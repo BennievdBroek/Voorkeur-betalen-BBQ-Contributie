@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Betaalvoorkeur Contributie & BBQ formulier(beveiligd)</title>
+  <title>Betaalvoorkeur contributie + BBQ formulier (beveiligd)</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -26,7 +26,7 @@
       text-align: center;
       color: #1e6b34;
       margin-bottom: 2rem;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       font-weight: bold;
       text-shadow: 2px 2px 0 #e6ffe6, 4px 4px 0 #006b6b;
     }
@@ -81,7 +81,7 @@
     <div class="logo">
       <img src="Logo%20akkerlinge%20basis.png" alt="Akkerlinge logo">
     </div>
-    <h1>Toegang vereist</h1>
+    <h1>🔐 Betaalvoorkeur contributie + BBQ formulier (beveiligd)</h1>
     <p>Voer het wachtwoord in om het formulier te bekijken.</p>
     <input type="password" id="wachtwoordInput" placeholder="Wachtwoord">
     <button onclick="checkWachtwoord()">Inloggen</button>
@@ -93,7 +93,7 @@
     <div class="logo">
       <img src="Logo%20akkerlinge%20basis.png" alt="Akkerlinge logo">
     </div>
-    <h1>Betaalvoorkeur Contributie & BBQ</h1>
+    <h1>🎉 Betaalvoorkeur contributie + BBQ formulier (beveiligd)</h1>
 
     <form id="betalingForm" action="https://formspree.io/f/xanpevey" method="POST">
       <h3>Contributie</h3>
@@ -134,19 +134,19 @@
     </form>
 
     <div id="bedanktMelding" class="bedankt hidden">
-  🎉 Bedankt voor het doorgeven van je betalingsvoorkeur!  
+      🎉 Bedankt voor het doorgeven van je betalingsvoorkeur!  
       We hebben je gegevens ontvangen.  
 
-  👉 Bij <b>Tikkie</b> ontvang je binnenkort <b>een tikkie van Bennie</b>
-  👉 Bij <b>Contant</b> gelieve het bedrag, op de BBQ op vrijdag 3 oktober <b>zo gepast mogelijk te betalen bij Bennie</b>
+      👉 Bij <b>Tikkie</b> ontvang je binnenkort een tikkie van Bennie.  
+      👉 Bij <b>Contant</b> gelieve het bedrag op de BBQ op vrijdag 3 oktober (zo gepast mogelijk) te betalen bij Bennie. 🎉
     </div>
   </div>
 
   <script>
     // ==== Wachtwoordcontrole ====
     function checkWachtwoord() {
-      const juistWachtwoord = "1234"; // <-- tijdelijk wachtwoord
-      const input = document.getElementById("wachtwoordInput").value;
+      const juistWachtwoord = "Akkerlinge2026!"; // jouw wachtwoord
+      const input = document.getElementById("wachtwoordInput").value.trim();
       if (input === juistWachtwoord) {
         document.getElementById("loginCard").classList.add("hidden");
         document.getElementById("formulierCard").classList.remove("hidden");
@@ -227,7 +227,7 @@
     function startConfetti() {
       confettiPieces = Array.from({length:300}, randomConfettiPiece);
       drawConfetti();
-      setTimeout(()=> confettiPieces=[], 21zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz000);
+      setTimeout(()=> confettiPieces=[], 5000);
     }
 
     // ==== Form versturen ====
@@ -243,7 +243,7 @@
           form.classList.add("hidden");
           bedanktMelding.classList.remove("hidden");
           startConfetti();
-          setTimeout(() => { window.location.href = window.location.href; }, 22000);
+          setTimeout(() => { window.location.href = window.location.href; }, 6000);
         } else {
           alert("Er is iets misgegaan, probeer het opnieuw.");
         }
@@ -252,5 +252,3 @@
   </script>
 </body>
 </html>
-
-
