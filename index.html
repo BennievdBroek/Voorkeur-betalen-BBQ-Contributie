@@ -21,12 +21,18 @@
       width: 100%;
     }
     .logo { text-align: center; margin-bottom: 1rem; }
-    .logo img { max-height: 700px; }
+    .logo img {
+      width: 100%;
+      max-width: 500px; /* groter, maar nog netjes */
+      height: auto;     /* houdt verhoudingen */
+      margin: 0 auto 1.5rem;
+      display: block;
+    }
     h1 {
       text-align: center;
       color: #1e6b34;
       margin-bottom: 0.5rem;
-      font-size: 0.7rem;
+      font-size: 1.8rem;
       font-weight: bold;
       text-shadow: 2px 2px 0 #e6ffe6, 4px 4px 0 #006b6b;
     }
@@ -134,11 +140,11 @@
     </form>
 
     <div id="bedanktMelding" class="bedankt hidden">
-    Bedankt voor het doorgeven van je betalingsvoorkeur!  
-    We hebben je gegevens ontvangen.  
+      Bedankt voor het doorgeven van je betalingsvoorkeur!  
+      We hebben je gegevens ontvangen.  
 
-    👉 Bij gekozen optie <b>Tikkie</b> ontvang je binnenkort een tikkie van Bennie.  
-    👉 Bij gekozen optie <b>Contant</b> gelieve het bedrag op de BBQ op vrijdag 3 oktober zo gepast mogelijk te betalen bij Bennie.
+      👉 Bij gekozen optie <b>Tikkie</b> ontvang je binnenkort een tikkie van Bennie.  
+      👉 Bij gekozen optie <b>Contant</b> gelieve het bedrag op de BBQ op vrijdag 3 oktober zo gepast mogelijk te betalen bij Bennie.
     </div>
   </div>
 
@@ -252,5 +258,3 @@
   </script>
 </body>
 </html>
-
-
