@@ -17,7 +17,7 @@
       padding: 2rem;
       border-radius: 20px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-      max-width: 650px;
+      max-width: 1000px;
       width: 100%;
     }
     .logo {
@@ -132,9 +132,15 @@
       🎉 Bedankt voor het doorgeven van je betalingsvoorkeur!  
       We hebben je gegevens ontvangen.  
 
-      👉 Bij de keuze <b>Tikkie</b> ontvang je ergens komende dagen een tikkie van Bennie via Whatsapp.
-      👉 Bij de keuze <b>Contant</b> gelieve het bedrag op de BBQ op vrijdag 3 oktober (zo gepast mogelijk) te betalen bij Bennie.
+      👉 Bij de keuze <b>Tikkie</b> ontvang je ergens komende dagen een <b>tikkie van Bennie via Whatsapp</b>.
+
+      
+      👉 Bij de keuze <b>Contant</b> gelieve het bedrag op de BBQ op vrijdag 3 oktober <b>zo gepast mogelijk te betalen bij Bennie</b>.
+
+      
     </div>
+
+    
   </div>
 
   <script>
@@ -209,7 +215,7 @@
     function startConfetti() {
       confettiPieces = Array.from({length:300}, randomConfettiPiece);
       drawConfetti();
-      setTimeout(()=> confettiPieces=[], 10000);
+      setTimeout(()=> confettiPieces=[], 20000);
     }
 
     // Versturen
@@ -225,7 +231,7 @@
           form.classList.add("hidden");
           bedanktMelding.classList.remove("hidden");
           startConfetti();
-          setTimeout(() => { window.location.href = window.location.href; }, 11000);
+          setTimeout(() => { window.location.href = window.location.href; }, 22000);
         } else {
           alert("Er is iets misgegaan, probeer het opnieuw.");
         }
@@ -234,5 +240,6 @@
   </script>
 </body>
 </html>
+
 
 
