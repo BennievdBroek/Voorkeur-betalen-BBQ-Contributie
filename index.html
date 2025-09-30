@@ -2,12 +2,11 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Contributie & BBQ formulier voorkeur betalen</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Contributie & BBQ formulier</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1e6b34, #006b6b);
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
       margin: 0;
       padding: 2rem;
       display: flex;
@@ -15,105 +14,46 @@
     }
     .card {
       background: white;
-      padding: 2.5rem;
+      padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      max-width: 700px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      max-width: 650px;
       width: 100%;
-      animation: fadeIn 0.5s ease-in;
-      position: relative;
-      z-index: 1;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
     .logo {
       text-align: center;
       margin-bottom: 1rem;
     }
-    .logo img {
-      max-height: 300px;
-      animation: wiggle 5 ease-in-out;
-    }
-    @keyframes wiggle {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(3deg); }
-      50% { transform: rotate(-3deg); }
-      75% { transform: rotate(2deg); }
-    }
+    .logo img { max-height: 420px; }
     h1 {
       text-align: center;
       color: #1e6b34;
-      margin-bottom: 2rem;
-      font-size: 2rem;
-    }
-    .section {
-      background: #f9f9f9;
-      padding: 1.5rem;
-      border-radius: 12px;
       margin-bottom: 1.5rem;
     }
-    h3 {
-      margin-top: 0;
-      margin-bottom: 1rem;
-      color: #006b6b;
-      font-size: 1.2rem;
-    }
-    label {
-      display:block;
-      margin-top:1rem;
-      font-weight: 600;
-      color:#333;
-    }
+    h3 { margin-top: 2rem; color: #006b6b; }
+    label { display:block; margin-top:1rem; font-weight: bold; color:#333; }
     input, select {
       width: 100%;
-      padding: .8rem;
+      padding: .6rem;
       margin-top:.3rem;
       border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 1rem;
-    }
-    input:focus, select:focus {
-      border-color: #1e6b34;
-      outline: none;
-      box-shadow: 0 0 5px rgba(30,107,52,0.3);
+      border-radius: 8px;
     }
     button {
-      margin-top: 2rem;
-      padding: 1rem;
-      width: 100%;
+      margin-top: 1.5rem;
+      padding: .8rem 1.5rem;
       border:none;
-      border-radius: 10px;
+      border-radius: 8px;
       background:#1e6b34;
       color:white;
-      font-size:1.2rem;
-      font-weight: 600;
+      font-size:1rem;
       cursor:pointer;
-      transition: transform 0.2s ease, background 0.3s ease;
-    }
-    button:hover {
-      background:#145023;
-      transform: scale(1.05);
     }
     .totaal {
-      margin-top:1.5rem;
+      margin-top:1rem;
       font-weight:bold;
-      font-size:1.3rem;
-      color:#fff;
-      background:#1e6b34;
-      padding:1rem;
-      border-radius:10px;
-      text-align:center;
-    }
-    @keyframes bounce {
-      0% { transform: scale(1); }
-      25% { transform: scale(1.1); }
-      50% { transform: scale(0.95); }
-      100% { transform: scale(1); }
-    }
-    .totaal.animate {
-      animation: bounce 0.3s;
+      font-size:1.2rem;
+      color:#000;
     }
     .hidden { display:none; }
     .bedankt {
@@ -126,12 +66,6 @@
       font-size:1.1rem;
       color:#1e6b34;
       font-weight:bold;
-      animation: popIn 0.4s ease forwards;
-      line-height:1.5;
-    }
-    @keyframes popIn {
-      from { opacity:0; transform: scale(0.8); }
-      to { opacity:1; transform: scale(1); }
     }
     #confetti-canvas {
       position: fixed;
@@ -151,29 +85,25 @@
     </div>
     <h1>Contributie & BBQ</h1>
 
-    <form id="betalingForm "action="https://formspree.io/f/xanpevey" method="POST">
-      <div class="section">
-        <h3>Contributie</h3>
-        <label>
-          Contributie leden vanaf 16 jaar (€25):
-          <input type="number" id="contributieVolw" name="contributie_volwassenen" min="0" value="0">
-        </label>
-      </div>
+    <form id="betalingForm" action="https://formspree.io/f/xxxxxx" method="POST">
+      <h3>Contributie</h3>
+      <label>
+        Contributie leden vanaf 16 jaar (€25):
+        <input type="number" id="contributieVolw" name="contributie_volwassenen" min="0" value="0">
+      </label>
 
-      <div class="section">
-        <h3>BBQ</h3>
-        <label>
-          BBQ Volwassenen (€25):
-          <input type="number" id="bbqVolw" name="bbq_volwassenen" min="0" value="0">
-        </label>
-        <label>
-          BBQ Kinderen t/m 16 jaar (€12,50):
-          <input type="number" id="bbqKind" name="bbq_kinderen" min="0" value="0">
-        </label>
-      </div>
+      <h3>BBQ</h3>
+      <label>
+        BBQ Volwassenen (€25):
+        <input type="number" id="bbqVolw" name="bbq_volwassenen" min="0" value="0">
+      </label>
+      <label>
+        BBQ Kinderen t/m 16 jaar (€12,50):
+        <input type="number" id="bbqKind" name="bbq_kinderen" min="0" value="0">
+      </label>
 
       <label>
-        Graag namen invullen voor wie er betaald wordt:
+        Voor wie (namen):
         <input type="text" name="voor_wie" required>
       </label>
 
@@ -204,15 +134,12 @@
 
   <script>
     const prijzen = { volwassene: 25, kind: 12.5 };
-
     const contributieVolw = document.getElementById("contributieVolw");
     const bbqVolw = document.getElementById("bbqVolw");
     const bbqKind = document.getElementById("bbqKind");
-
     const totaalDisplay = document.getElementById("totaalDisplay");
     const totaalInput = document.getElementById("totaalbedrag");
     const samenvattingInput = document.getElementById("samenvatting");
-
     const form = document.getElementById("betalingForm");
     const bedanktMelding = document.getElementById("bedanktMelding");
 
@@ -220,30 +147,19 @@
       const cv = parseInt(contributieVolw.value) || 0;
       const bv = parseInt(bbqVolw.value) || 0;
       const bk = parseInt(bbqKind.value) || 0;
-
       const totaal = cv*prijzen.volwassene + bv*prijzen.volwassene + bk*prijzen.kind;
       totaalDisplay.textContent = `Totaal: €${totaal.toFixed(2)}`;
       totaalInput.value = `€${totaal.toFixed(2)}`;
-
       let onderdelen = [];
       if (cv>0) onderdelen.push(`${cv} volwassene(n) contributie`);
       if (bv>0) onderdelen.push(`${bv} volwassene(n) BBQ`);
       if (bk>0) onderdelen.push(`${bk} kind(eren) BBQ`);
-
       samenvattingInput.value = onderdelen.length>0 ? onderdelen.join(" + ")+` = €${totaal.toFixed(2)}` : "Geen keuze";
-
-      totaalDisplay.classList.remove("animate");
-      void totaalDisplay.offsetWidth;
-      totaalDisplay.classList.add("animate");
     }
-
-    [contributieVolw, bbqVolw, bbqKind].forEach(el =>
-      el.addEventListener("input", updateTotaal)
-    );
-
+    [contributieVolw, bbqVolw, bbqKind].forEach(el => el.addEventListener("input", updateTotaal));
     updateTotaal();
 
-    // Confetti
+    // Confetti setup
     const confettiCanvas = document.getElementById("confetti-canvas");
     const ctx = confettiCanvas.getContext("2d");
     let confettiPieces = [];
@@ -286,12 +202,12 @@
     }
 
     function startConfetti() {
-      confettiPieces = Array.from({length:150}, randomConfettiPiece);
+      confettiPieces = Array.from({length:300}, randomConfettiPiece); // EXTRA VEEL 🎉
       drawConfetti();
       setTimeout(()=> confettiPieces=[], 5000);
     }
 
-    // Form versturen
+    // Versturen
     form.addEventListener("submit", function(e) {
       e.preventDefault();
       const data = new FormData(form);
@@ -301,20 +217,11 @@
         headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
-  form.classList.add("hidden");
-  bedanktMelding.classList.remove("hidden");
-  startConfetti();
-
-  // Na 5 seconden de pagina opnieuw laden
-  setTimeout(() => {
-    window.location.reload();
-  }, 5000);
-}
-
-        if (response.ok) {
           form.classList.add("hidden");
           bedanktMelding.classList.remove("hidden");
           startConfetti();
+          // Na 6 sec terug naar dezelfde pagina
+          setTimeout(() => { window.location.href = window.location.href; }, 6000);
         } else {
           alert("Er is iets misgegaan, probeer het opnieuw.");
         }
@@ -323,9 +230,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
