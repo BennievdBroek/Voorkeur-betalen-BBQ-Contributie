@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Contributie & BBQ formulier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e6b34, #006b6b);
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    .card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      max-width: 700px;
+      width: 100%;
+      animation: fadeIn 0.5s ease-in;
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .logo img {
+      max-height: 140px;
+      animation: wiggle 1s ease-in-out;
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(3deg); }
+      50% { transform: rotate(-3deg); }
+      75% { transform: rotate(2deg); }
+    }
+    h1 {
+      text-align: center;
+      color: #1e6b34;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    .section {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+    }
+    h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: #006b6b;
+      font-size: 1.2rem;
+    }
+    label {
+      display:block;
+      margin-top:1rem;
+      font-weight: 600;
+      color:#333;
+    }
+    input, select {
+      width: 100%;
+      padding: .8rem;
+      margin-top:.3rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    input:focus, select:focus {
+      border-color: #1e6b34;
+      outline: none;
+      box-shadow: 0 0 5px rgba(30,107,52,0.3);
+    }
+    button {
+      margin-top: 2rem;
+      padding: 1rem;
+      width: 100%;
+      border:none;
+      border-radius: 10px;
+      background:#1e6b34;
+      color:white;
+      font-size:1.2rem;
+      font-weight: 600;
+      cursor:pointer;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    button:hover {
+      background:#145023;
+      transform: scale(1.05);
+    }
+    .totaal {
+      margin-top:1.5rem;
+      font-weight:bold;
+      font-size:1.3rem;
+      color:#fff;
+      background:#1e6b34;
+      padding:1rem;
+      border-radius:10px;
+      text-align:center;
+    }
+    @keyframes bounce {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+    .totaal.animate {
+      animation: bounce 0.3s;
+    }
+    .hidden { display:none; }
+    .bedankt {
+      text-align:center;
+      padding:2rem;
+      background:#e6ffe6;
+      border:2px solid #1e6b34;
+      border-radius:15px;
+      margin-top:1rem;
+      font-size:1.1rem;
+      color:#1e6b34;
+      font-weight:bold;
+      animation: popIn 0.4s ease forwards;
+      line-height:1.5;
+    }
+    @keyframes popIn {
+      from { opacity:0; transform: scale(0.8); }
+      to { opacity:1; transform: scale(1); }
+    }
+    #confetti-canvas {
+      position: fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="card">
+    <div class="logo">
+      <img src="Logo%20akkerlinge%20basis.png" alt="Akkerlinge logo">
+    </div>
+    <h1>Contributie & BBQ</h1>
+
+    <form id="betalingForm" action="https://formspree.io/f/xxxxxx" method="POST">
+      <div class="section">
+        <h3>Contributie</h3>
+        <label>
+          Contributie leden vanaf 16 jaar (€25):
+          <input type="number" id="contributieVolw" name="contributie_volwassenen" min="0" value="0">
+        </label>
+      </div>
+
+      <div class="section">
+        <h3>BBQ</h3>
+        <label>
+          BBQ Volwassenen (€25):
+          <input type="number" id="bbqVolw" name="bbq_volwassenen" min="0" value="0">
+        </label>
+        <label>
+          BBQ Kinderen t/m 16 jaar (€12,50):
+          <input type="number" id="bbqKind" name="bbq_kinderen" min="0" value="0">
+        </label>
+      </div>
+
+      <label>
+        Graag namen invullen voor wie er betaald wordt:
+        <input type="text" name="voor_wie" required>
+      </label>
+
+      <label>
+        Betaalwijze:
+        <select name="betaalwijze">
+          <option value="Tikkie">Tikkie</option>
+          <option value="Contant">Contant</option>
+        </select>
+      </label>
+
+      <input type="hidden" id="totaalbedrag" name="totaalbedrag">
+      <input type="hidden" id="samenvatting" name="samenvatting">
+
+      <div class="totaal" id="totaalDisplay">Totaal: €0,00</div>
+
+      <button type="submit">Versturen</button>
+    </form>
+
+    <div id="bedanktMelding" class="bedankt hidden">
+      🎉 Bedankt voor het doorgeven van je betalingsvoorkeur!  
+      We hebben je gegevens ontvangen.  
+
+      👉 Bij <b>Tikkie</b> ontvang je binnenkort een tikkie van Bennie.  
+      👉 Bij <b>Contant</b> gelieve het bedrag op de BBQ op vrijdag 3 oktober (zo gepast mogelijk) te betalen bij Bennie. 🎉
+    </div>
+  </div>
+
+  <script>
+    const prijzen = { volwassene: 25, kind: 12.5 };
+
+    const contributieVolw = document.getElementById("contributieVolw");
+    const bbqVolw = document.getElementById("bbqVolw");
+    const bbqKind = document.getElementById("bbqKind");
+
+    const totaalDisplay = document.getElementById("totaalDisplay");
+    const totaalInput = document.getElementById("totaalbedrag");
+    const samenvattingInput = document.getElementById("samenvatting");
+
+    const form = document.getElementById("betalingForm");
+    const bedanktMelding = document.getElementById("bedanktMelding");
+
+    function updateTotaal() {
+      const cv = parseInt(contributieVolw.value) || 0;
+      const bv = parseInt(bbqVolw.value) || 0;
+      const bk = parseInt(bbqKind.value) || 0;
+
+      const totaal = cv*prijzen.volwassene + bv*prijzen.volwassene + bk*prijzen.kind;
+      totaalDisplay.textContent = `Totaal: €${totaal.toFixed(2)}`;
+      totaalInput.value = `€${totaal.toFixed(2)}`;
+
+      let onderdelen = [];
+      if (cv>0) onderdelen.push(`${cv} volwassene(n) contributie`);
+      if (bv>0) onderdelen.push(`${bv} volwassene(n) BBQ`);
+      if (bk>0) onderdelen.push(`${bk} kind(eren) BBQ`);
+
+      samenvattingInput.value = onderdelen.length>0 ? onderdelen.join(" + ")+` = €${totaal.toFixed(2)}` : "Geen keuze";
+
+      totaalDisplay.classList.remove("animate");
+      void totaalDisplay.offsetWidth;
+      totaalDisplay.classList.add("animate");
+    }
+
+    [contributieVolw, bbqVolw, bbqKind].forEach(el =>
+      el.addEventListener("input", updateTotaal)
+    );
+
+    updateTotaal();
+
+    // Confetti
+    const confettiCanvas = document.getElementById("confetti-canvas");
+    const ctx = confettiCanvas.getContext("2d");
+    let confettiPieces = [];
+
+    function resizeCanvas() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    function randomConfettiPiece() {
+      const colors = ["#1e6b34", "#006b6b", "#ffcc00", "#ff0066", "#00ccff"];
+      return {
+        x: Math.random()*confettiCanvas.width,
+        y: Math.random()*-20,
+        w: 8,
+        h: 14,
+        color: colors[Math.floor(Math.random()*colors.length)],
+        speed: 2+Math.random()*3,
+        rotation: Math.random()*360,
+        rotationSpeed: Math.random()*10-5
+      };
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+      confettiPieces.forEach((p,i) => {
+        p.y += p.speed;
+        p.rotation += p.rotationSpeed;
+        if (p.y > confettiCanvas.height) confettiPieces[i] = randomConfettiPiece();
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation * Math.PI/180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+        ctx.restore();
+      });
+      if (confettiPieces.length>0) requestAnimationFrame(drawConfetti);
+    }
+
+    function startConfetti() {
+      confettiPieces = Array.from({length:150}, randomConfettiPiece);
+      drawConfetti();
+      setTimeout(()=> confettiPieces=[], 5000);
+    }
+
+    // Form versturen
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.classList.add("hidden");
+          bedanktMelding.classList.remove("hidden");
+          startConfetti();
+        } else {
+          alert("Er is iets misgegaan, probeer het opnieuw.");
+        }
+      }).catch(() => alert("Netwerkfout, probeer het opnieuw."));
+    });
+  </script>
+</body>
+</html>
