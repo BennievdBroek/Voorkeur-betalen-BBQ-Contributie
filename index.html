@@ -17,37 +17,40 @@
       padding: 2rem;
       border-radius: 20px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-      max-width: 650px;
+      max-width: 600px;
       width: 100%;
     }
-    .logo { text-align: center; margin-bottom: 1rem; }
+    .logo {
+      text-align: center;
+      margin-bottom: 0.5rem; /* kleiner gat onder logo */
+    }
     .logo img {
+      max-width: 350px;  /* groter logo */
       width: 100%;
-      max-width: 500px; /* groter, maar nog netjes */
-      height: auto;     /* houdt verhoudingen */
-      margin: 0 auto 1.5rem;
+      height: auto;
       display: block;
+      margin: 0 auto;
     }
     h1 {
       text-align: center;
       color: #1e6b34;
-      margin-bottom: 0.5rem;
+      margin: 0.2rem 0 1rem 0; /* dichterbij logo */
       font-size: 1.8rem;
       font-weight: bold;
-      text-shadow: 2px 2px 0 #e6ffe6, 4px 4px 0 #006b6b;
+      text-shadow: 1px 1px 0 #e6ffe6, 2px 2px 0 #006b6b;
     }
-    h3 { margin-top: 2rem; color: #006b6b; }
-    label { display:block; margin-top:1rem; font-weight: bold; color:#333; }
+    h3 { margin-top: 1.2rem; color: #006b6b; }
+    label { display:block; margin-top:0.8rem; font-weight: bold; color:#333; }
     input, select {
       width: 100%;
-      padding: .6rem;
+      padding: .5rem;
       margin-top:.3rem;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 6px;
     }
     button {
-      margin-top: 1.5rem;
-      padding: .8rem 1.5rem;
+      margin-top: 1.2rem;
+      padding: .7rem 1.2rem;
       border:none;
       border-radius: 8px;
       background:#1e6b34;
@@ -56,16 +59,16 @@
       cursor:pointer;
     }
     button:hover { background:#145023; }
-    .totaal { margin-top:1rem; font-weight:bold; font-size:1.2rem; color:#000; }
+    .totaal { margin-top:1rem; font-weight:bold; font-size:1.1rem; color:#000; }
     .hidden { display:none; }
     .bedankt {
       text-align:center;
-      padding:2rem;
+      padding:1.5rem;
       background:#e6ffe6;
       border:2px solid #1e6b34;
-      border-radius:15px;
+      border-radius:12px;
       margin-top:1rem;
-      font-size:1.1rem;
+      font-size:1rem;
       color:#1e6b34;
       font-weight:bold;
     }
@@ -88,7 +91,7 @@
       <img src="Logo%20akkerlinge%20basis.png" alt="Akkerlinge logo">
     </div>
     <h1>Betaalvoorkeur contributie + BBQ formulier</h1>
-    <p>Voer het wachtwoord in om het formulier te bekijken.</p>
+    <p style="text-align:center;">Voer het wachtwoord in om het formulier te bekijken.</p>
     <input type="password" id="wachtwoordInput" placeholder="Wachtwoord">
     <button onclick="checkWachtwoord()">Inloggen</button>
     <p id="foutmelding">❌ Onjuist wachtwoord, probeer opnieuw.</p>
@@ -149,9 +152,8 @@
   </div>
 
   <script>
-    // ==== Wachtwoordcontrole ====
     function checkWachtwoord() {
-      const juistWachtwoord = "Akkerlinge2026!"; // jouw wachtwoord
+      const juistWachtwoord = "Akkerlinge2026!";
       const input = document.getElementById("wachtwoordInput").value.trim();
       if (input === juistWachtwoord) {
         document.getElementById("loginCard").classList.add("hidden");
@@ -161,7 +163,6 @@
       }
     }
 
-    // ==== Formulier berekening ====
     const prijzen = { volwassene: 25, kind: 12.5 };
     const contributieVolw = document.getElementById("contributieVolw");
     const bbqVolw = document.getElementById("bbqVolw");
@@ -188,32 +189,28 @@
     [contributieVolw, bbqVolw, bbqKind].forEach(el => el.addEventListener("input", updateTotaal));
     updateTotaal();
 
-    // ==== Confetti ====
+    // confetti
     const confettiCanvas = document.getElementById("confetti-canvas");
     const ctx = confettiCanvas.getContext("2d");
     let confettiPieces = [];
-
     function resizeCanvas() {
       confettiCanvas.width = window.innerWidth;
       confettiCanvas.height = window.innerHeight;
     }
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
-
     function randomConfettiPiece() {
       const colors = ["#1e6b34", "#006b6b", "#ffcc00", "#ff0066", "#00ccff"];
       return {
         x: Math.random()*confettiCanvas.width,
         y: Math.random()*-20,
-        w: 8,
-        h: 14,
+        w: 8, h: 14,
         color: colors[Math.floor(Math.random()*colors.length)],
         speed: 2+Math.random()*3,
         rotation: Math.random()*360,
         rotationSpeed: Math.random()*10-5
       };
     }
-
     function drawConfetti() {
       ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
       confettiPieces.forEach((p,i) => {
@@ -229,14 +226,12 @@
       });
       if (confettiPieces.length>0) requestAnimationFrame(drawConfetti);
     }
-
     function startConfetti() {
       confettiPieces = Array.from({length:300}, randomConfettiPiece);
       drawConfetti();
-      setTimeout(()=> confettiPieces=[], 22000);
+      setTimeout(()=> confettiPieces=[], 8000);
     }
 
-    // ==== Form versturen ====
     form.addEventListener("submit", function(e) {
       e.preventDefault();
       const data = new FormData(form);
@@ -249,7 +244,6 @@
           form.classList.add("hidden");
           bedanktMelding.classList.remove("hidden");
           startConfetti();
-          setTimeout(() => { window.location.href = window.location.href; }, 23000);
         } else {
           alert("Er is iets misgegaan, probeer het opnieuw.");
         }
