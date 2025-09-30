@@ -301,6 +301,17 @@
         headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
+  form.classList.add("hidden");
+  bedanktMelding.classList.remove("hidden");
+  startConfetti();
+
+  // Na 5 seconden de pagina opnieuw laden
+  setTimeout(() => {
+    window.location.reload();
+  }, 5000);
+}
+
+        if (response.ok) {
           form.classList.add("hidden");
           bedanktMelding.classList.remove("hidden");
           startConfetti();
