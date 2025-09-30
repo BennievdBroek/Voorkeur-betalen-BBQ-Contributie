@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Betaalvoorkeur contributie + BBQ formulier (beveiligd)</title>
+  <title>Betaalvoorkeur contributie + BBQ formulier</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -81,7 +81,7 @@
     <div class="logo">
       <img src="Logo%20akkerlinge%20basis.png" alt="Akkerlinge logo">
     </div>
-    <h1>🔐 Betaalvoorkeur contributie + BBQ formulier (beveiligd)</h1>
+    <h1>Betaalvoorkeur contributie + BBQ formulier</h1>
     <p>Voer het wachtwoord in om het formulier te bekijken.</p>
     <input type="password" id="wachtwoordInput" placeholder="Wachtwoord">
     <button onclick="checkWachtwoord()">Inloggen</button>
@@ -93,7 +93,7 @@
     <div class="logo">
       <img src="Logo%20akkerlinge%20basis.png" alt="Akkerlinge logo">
     </div>
-    <h1>🎉 Betaalvoorkeur contributie + BBQ formulier (beveiligd)</h1>
+    <h1>Betaalvoorkeur contributie + BBQ formulier</h1>
 
     <form id="betalingForm" action="https://formspree.io/f/xanpevey" method="POST">
       <h3>Contributie</h3>
@@ -134,11 +134,11 @@
     </form>
 
     <div id="bedanktMelding" class="bedankt hidden">
-      🎉 Bedankt voor het doorgeven van je betalingsvoorkeur!  
-      We hebben je gegevens ontvangen.  
+    Bedankt voor het doorgeven van je betalingsvoorkeur!  
+    We hebben je gegevens ontvangen.  
 
-      👉 Bij <b>Tikkie</b> ontvang je binnenkort een tikkie van Bennie.  
-      👉 Bij <b>Contant</b> gelieve het bedrag op de BBQ op vrijdag 3 oktober (zo gepast mogelijk) te betalen bij Bennie. 🎉
+    👉 Bij gekozen optie <b>Tikkie</b> ontvang je binnenkort een tikkie van Bennie.  
+    👉 Bij gekozen optie <b>Contant</b> gelieve het bedrag op de BBQ op vrijdag 3 oktober zo gepast mogelijk te betalen bij Bennie.
     </div>
   </div>
 
@@ -227,7 +227,7 @@
     function startConfetti() {
       confettiPieces = Array.from({length:300}, randomConfettiPiece);
       drawConfetti();
-      setTimeout(()=> confettiPieces=[], 5000);
+      setTimeout(()=> confettiPieces=[], 22000);
     }
 
     // ==== Form versturen ====
@@ -243,7 +243,7 @@
           form.classList.add("hidden");
           bedanktMelding.classList.remove("hidden");
           startConfetti();
-          setTimeout(() => { window.location.href = window.location.href; }, 6000);
+          setTimeout(() => { window.location.href = window.location.href; }, 23000);
         } else {
           alert("Er is iets misgegaan, probeer het opnieuw.");
         }
@@ -252,3 +252,4 @@
   </script>
 </body>
 </html>
+
